@@ -27,8 +27,8 @@ public class TeamController {
         return teamService.getAllTeam();
     }
 
-    /*@GetMapping("/test")
+    @GetMapping("/test")
     public List<Student> getStudents(){
-        return teamService.getStudents();
-    }*/
+        return teamService.getTest();
+    }
 }

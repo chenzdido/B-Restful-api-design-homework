@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.StudentList;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class TeamService {
         teamMap.put(new Team(6, "Team 6", null),students);
     }
 
+    StudentList studentList = new StudentList();
+
     public Team updateTeam(Integer id, String name){
         for(Team team:teamMap.keySet()){
             if(team.getId()==id){
@@ -35,4 +38,9 @@ public class TeamService {
         return teamMap;
     }
 
+    public List<Student> getTest(){
+        List<Student> stu=studentList.getStudentList();
+        Collections.shuffle(stu);
+        return stu;
+    }
 }
