@@ -1,17 +1,14 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
-import com.thoughtworks.capability.gtb.restfulapidesign.domain.Gender;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TeamService {
+
     private Map<Team, List<Student>> teamMap=new HashMap<>();
 
     public TeamService(){
@@ -37,4 +34,5 @@ public class TeamService {
     public Map<Team, List<Student>> getAllTeam(){
         return teamMap;
     }
+
 }
