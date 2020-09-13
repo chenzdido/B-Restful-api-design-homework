@@ -50,4 +50,8 @@ public class StudentService {
     public List<Student> getAllStudents(){
         return studentList;
     }
+
+    public void addStudent(Student student){
+        studentList.add(student);
+    }
 }

@@ -2,8 +2,8 @@ package com.thoughtworks.capability.gtb.restfulapidesign.api;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +21,10 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @PostMapping("/students")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addStudent(@RequestBody Student student){
+        studentService.addStudent(student);
+    }
 
 }
