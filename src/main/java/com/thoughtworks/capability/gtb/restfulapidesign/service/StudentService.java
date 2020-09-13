@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Gender;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.IdNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,11 +57,17 @@ public class StudentService {
     }
 
     public void deleteStudent(Integer id){
-        for(Student stu:studentList){
-            if(stu.getId()==id){
+        int count = 0;
+        int length=studentList.size();
+        for(Student stu:studentList) {
+            if (stu.getId() == id) {
                 studentList.remove(stu);
                 break;
             }
+            count++;
+        }
+        if(count==length) {
+            throw new IdNotFoundException("student id is not exit");
         }
     }
 
@@ -70,7 +77,7 @@ public class StudentService {
                 return stu;
             }
         }
-        return null;
+        throw new IdNotFoundException("student id is not exit");
     }
 
     public Student updateStudent(Integer id, Student student) {
@@ -82,7 +89,7 @@ public class StudentService {
                 return stu;
             }
         }
-        return null;
+        throw new IdNotFoundException("student id is not exit");
     }
 
     public List<Student> getStudentsByGender(String gender) {
