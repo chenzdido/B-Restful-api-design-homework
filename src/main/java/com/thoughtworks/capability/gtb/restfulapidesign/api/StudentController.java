@@ -1,13 +1,10 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.api;
 
-import com.thoughtworks.capability.gtb.restfulapidesign.domain.Gender;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.IdDuplicate;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
