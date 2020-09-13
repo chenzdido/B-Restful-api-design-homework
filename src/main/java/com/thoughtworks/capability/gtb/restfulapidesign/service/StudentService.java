@@ -63,4 +63,13 @@ public class StudentService {
             }
         }
     }
+
+    public Student getStudentById(Integer id){
+        for(Student stu:studentList){
+            if(stu.getId()==id){
+                return stu;
+            }
+        }
+        return null;
+    }
 }
