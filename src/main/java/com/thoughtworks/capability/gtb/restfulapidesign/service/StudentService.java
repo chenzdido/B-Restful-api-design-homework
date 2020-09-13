@@ -54,4 +54,13 @@ public class StudentService {
     public void addStudent(Student student){
         studentList.add(student);
     }
+
+    public void deleteStudent(Integer id){
+        for(Student stu:studentList){
+            if(stu.getId()==id){
+                studentList.remove(stu);
+                break;
+            }
+        }
+    }
 }
