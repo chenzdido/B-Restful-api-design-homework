@@ -84,4 +84,14 @@ public class StudentService {
         }
         return null;
     }
+
+    public List<Student> getStudentsByGender(String gender) {
+        List<Student> studentListByGender=new ArrayList<>();
+        for(Student stu:studentList){
+            if(stu.getGender().toString().equals(gender)){
+                studentListByGender.add(stu);
+            }
+        }
+        return studentListByGender;
+    }
 }

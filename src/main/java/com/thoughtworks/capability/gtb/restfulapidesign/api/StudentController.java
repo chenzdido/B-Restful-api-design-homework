@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.api;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Gender;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,11 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents(@RequestParam(value = "gender", required = false) String gender){
+        if(gender==null){
         return studentService.getAllStudents();
+        }
+        return studentService.getStudentsByGender(gender);
     }
 
     @GetMapping("/students/{id}")
