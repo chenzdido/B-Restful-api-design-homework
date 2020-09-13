@@ -72,4 +72,16 @@ public class StudentService {
         }
         return null;
     }
+
+    public Student updateStudent(Integer id, Student student) {
+        for(Student stu:studentList){
+            if(stu.getId()==id){
+                stu.setGender(student.getGender());
+                stu.setName(student.getName());
+                stu.setNote(student.getNote());
+                return stu;
+            }
+        }
+        return null;
+    }
 }
