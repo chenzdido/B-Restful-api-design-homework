@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Gender;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.IdDuplicate;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.IdNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,13 @@ public class StudentService {
         return studentList;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) throws IdDuplicate {
+        Integer id = student.getId();
+        for(Student stu:studentList){
+            if(id==stu.getId()){
+                throw new IdDuplicate("id cannot be repeated");
+            }
+        }
         studentList.add(student);
     }
 

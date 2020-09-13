@@ -12,4 +12,10 @@ public class GlobalExceptionHandler {
         ErrorResult errorResult=new ErrorResult(ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResult);
     }
+
+    @ExceptionHandler(IdDuplicate.class)
+    public ResponseEntity<ErrorResult> handle(IdDuplicate ex){
+        ErrorResult errorResult=new ErrorResult(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
 }

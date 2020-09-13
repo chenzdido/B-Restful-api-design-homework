@@ -1,5 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.domain;
 
+import javax.validation.constraints.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
