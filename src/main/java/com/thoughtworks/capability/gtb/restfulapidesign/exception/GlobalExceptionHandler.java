@@ -18,4 +18,10 @@ public class GlobalExceptionHandler {
         ErrorResult errorResult=new ErrorResult(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
+
+    @ExceptionHandler(teamNameExists.class)
+    public ResponseEntity<ErrorResult> handle(teamNameExists ex){
+        ErrorResult errorResult=new ErrorResult(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
 }

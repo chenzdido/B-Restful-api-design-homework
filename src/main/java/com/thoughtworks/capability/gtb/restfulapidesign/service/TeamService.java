@@ -3,6 +3,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.StudentRepository;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.teamNameExists;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,13 @@ public class TeamService {
     Map<Integer, Team> teamList = teamRepository.getTeamList();
 
     public void updateTeamName(Integer id, String name){
+        Map<String,Integer> teamNameMap= new HashMap<>();
+        for(int key = 1; key<=6; key++){
+            teamNameMap.put(teamList.get(key).getName(),key);
+        }
+        if(teamNameMap.get(name)!=null){
+            throw new teamNameExists("team name has exist");
+        }
         Team team = teamList.get(id);
         team.setName(name);
         teamList.put(id,team);
