@@ -15,12 +15,12 @@ public class StudentService {
     StudentRepository studentRepository = new StudentRepository();
 
     public List<Student> getAllStudents(String gender){
-        if(gender == null){
+        if (gender == null){
             return studentRepository.getStudentList();
         }
         List<Student> studentListByGender=new ArrayList<>();
-        for(Student stu:studentRepository.getStudentList()){
-            if(stu.getGender().toString().equals(gender)){
+        for (Student stu:studentRepository.getStudentList()){
+            if (stu.getGender().toString().equals(gender)){
                 studentListByGender.add(stu);
             }
         }
@@ -29,8 +29,8 @@ public class StudentService {
 
     public void addStudent(Student student) throws IdDuplicate {
         Integer id = student.getId();
-        for(Student stu:studentRepository.getStudentList()){
-            if(id==stu.getId()){
+        for (Student stu:studentRepository.getStudentList()){
+            if (id==stu.getId()){
                 throw new IdDuplicate("id cannot be repeated");
             }
         }
@@ -39,22 +39,22 @@ public class StudentService {
 
     public void deleteStudent(Integer id){
         int count = 0;
-        int length=studentRepository.getStudentList().size();
-        for(Student stu:studentRepository.getStudentList()) {
+        int length = studentRepository.getStudentList().size();
+        for (Student stu:studentRepository.getStudentList()) {
             if (stu.getId() == id) {
                 studentRepository.getStudentList().remove(stu);
                 break;
             }
             count++;
         }
-        if(count==length) {
+        if (count == length) {
             throw new IdNotFoundException("student id is not exit");
         }
     }
 
     public Student getStudentById(Integer id){
-        for(Student stu:studentRepository.getStudentList()){
-            if(stu.getId()==id){
+        for (Student stu:studentRepository.getStudentList()){
+            if (stu.getId() == id){
                 return stu;
             }
         }
@@ -63,7 +63,7 @@ public class StudentService {
 
     public Student updateStudent(Integer id, Student student) {
         for(Student stu:studentRepository.getStudentList()){
-            if(stu.getId()==id){
+            if(stu.getId() == id){
                 stu.setGender(student.getGender());
                 stu.setName(student.getName());
                 stu.setNote(student.getNote());
