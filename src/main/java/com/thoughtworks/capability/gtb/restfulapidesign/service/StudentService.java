@@ -14,16 +14,6 @@ public class StudentService {
 
     StudentRepository studentRepository = new StudentRepository();
 
-    /*public List<Student> getStudentsByGender(String gender) {
-        List<Student> studentListByGender=new ArrayList<>();
-        for(Student stu:studentRepository.getStudentList()){
-            if(stu.getGender().toString().equals(gender)){
-                studentListByGender.add(stu);
-            }
-        }
-        return studentListByGender;
-    }*/
-
     public List<Student> getAllStudents(String gender){
         if(gender == null){
             return studentRepository.getStudentList();
