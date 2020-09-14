@@ -1,8 +1,9 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
-import com.thoughtworks.capability.gtb.restfulapidesign.domain.StudentList;
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.StudentRepository;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Team;
+import com.thoughtworks.capability.gtb.restfulapidesign.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -10,37 +11,31 @@ import java.util.*;
 @Service
 public class TeamService {
 
-    private Map<Team, List<Student>> teamMap=new HashMap<>();
+    TeamRepository teamRepository = new TeamRepository();
+    StudentRepository studentRepository = new StudentRepository();
+    Map<Integer, Team> teamList = teamRepository.getTeamList();
 
-    public TeamService(){
+    public void updateTeamName(Integer id, String name){
+        Team team = teamList.get(id);
+        team.setName(name);
+        teamList.put(id,team);
+    }
+
+    public Map<Integer, Team> getAllTeam(){
+        return teamList;
+    }
+
+    public List<List<Student>> getTest(){
         List<Student> students=new ArrayList<>();
-        teamMap.put(new Team(1, "Team 1", null),students);
-        teamMap.put(new Team(2, "Team 2", null),students);
-        teamMap.put(new Team(3, "Team 3", null),students);
-        teamMap.put(new Team(4, "Team 4", null),students);
-        teamMap.put(new Team(5, "Team 5", null),students);
-        teamMap.put(new Team(6, "Team 6", null),students);
-    }
-
-    StudentList studentList = new StudentList();
-
-    public Team updateTeam(Integer id, String name){
-        for(Team team:teamMap.keySet()){
-            if(team.getId()==id){
-                team.setName(name);
-            }
-            return team;
-        }
-        return null;
-    }
-
-    public Map<Team, List<Student>> getAllTeam(){
-        return teamMap;
-    }
-
-    public List<Student> getTest(){
-        List<Student> stu=studentList.getStudentList();
+        List<Student> stu=studentRepository.getStudentList();
+        List<List<Student>> teamList=new ArrayList<>();
         Collections.shuffle(stu);
-        return stu;
+        for(int i=0;i<stu.size();i++){
+            for(int k=0;i<stu.size()&&k<6;k++,i++){
+                teamList.get(k).add(stu.get(i));
+            }
+            System.out.println(i);
+        }
+        return teamList;
     }
 }

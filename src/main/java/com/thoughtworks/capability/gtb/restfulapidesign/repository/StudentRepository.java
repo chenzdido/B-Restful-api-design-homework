@@ -3,14 +3,16 @@ package com.thoughtworks.capability.gtb.restfulapidesign.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentList {
+public class StudentRepository {
     private List<Student> studentList = new ArrayList<Student>(){{
         add(new Student(1, "沈乐棋", Gender.MALE, null));
         add(new Student(2, "徐慧慧", Gender.FEMALE, null));

@@ -18,17 +18,17 @@ public class TeamController {
     }
 
     @PutMapping("/teams/{id}")
-    public Team updateTeam(@PathVariable Integer id, @RequestBody String name){
-        return teamService.updateTeam(id,name);
+    public void updateTeam(@PathVariable Integer id, @RequestBody String name){
+        teamService.updateTeamName(id,name);
     }
 
     @GetMapping("/teams")
-    public Map<Team, List<Student>> getAllTeam(){
+    public Map<Integer, Team> getAllTeam(){
         return teamService.getAllTeam();
     }
 
     @GetMapping("/test")
-    public List<Student> getStudents(){
+    public List<List<Student>> getStudents(){
         return teamService.getTest();
     }
 }
