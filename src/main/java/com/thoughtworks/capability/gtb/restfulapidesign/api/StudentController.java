@@ -18,10 +18,7 @@ public class StudentController {
 
     @GetMapping("/students")
     public List<Student> getAllStudents(@RequestParam(value = "gender", required = false) String gender){
-        if(gender==null){
-        return studentService.getAllStudents();
-        }
-        return studentService.getStudentsByGender(gender);
+        return studentService.getAllStudents(gender);
     }
 
     @GetMapping("/students/{id}")

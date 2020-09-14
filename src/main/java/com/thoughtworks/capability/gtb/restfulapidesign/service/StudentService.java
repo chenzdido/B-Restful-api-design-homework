@@ -13,8 +13,28 @@ import java.util.List;
 public class StudentService {
 
     StudentRepository studentRepository = new StudentRepository();
-    public List<Student> getAllStudents(){
-        return studentRepository.getStudentList();
+
+    /*public List<Student> getStudentsByGender(String gender) {
+        List<Student> studentListByGender=new ArrayList<>();
+        for(Student stu:studentRepository.getStudentList()){
+            if(stu.getGender().toString().equals(gender)){
+                studentListByGender.add(stu);
+            }
+        }
+        return studentListByGender;
+    }*/
+
+    public List<Student> getAllStudents(String gender){
+        if(gender == null){
+            return studentRepository.getStudentList();
+        }
+        List<Student> studentListByGender=new ArrayList<>();
+        for(Student stu:studentRepository.getStudentList()){
+            if(stu.getGender().toString().equals(gender)){
+                studentListByGender.add(stu);
+            }
+        }
+        return studentListByGender;
     }
 
     public void addStudent(Student student) throws IdDuplicate {
@@ -63,13 +83,5 @@ public class StudentService {
         throw new IdNotFoundException("student id is not exit");
     }
 
-    public List<Student> getStudentsByGender(String gender) {
-        List<Student> studentListByGender=new ArrayList<>();
-        for(Student stu:studentRepository.getStudentList()){
-            if(stu.getGender().toString().equals(gender)){
-                studentListByGender.add(stu);
-            }
-        }
-        return studentListByGender;
-    }
+
 }
