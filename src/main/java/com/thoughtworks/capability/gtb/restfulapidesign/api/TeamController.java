@@ -27,8 +27,8 @@ public class TeamController {
         return teamService.getAllTeam();
     }
 
-    @GetMapping("/test")
-    public List<List<Student>> getStudents(){
-        return teamService.getTest();
+    @GetMapping("/group")
+    public Map<Integer, Team> groupTeam(){
+        return teamService.groupTeam();
     }
 }

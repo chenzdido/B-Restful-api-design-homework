@@ -25,16 +25,17 @@ public class TeamService {
         return teamList;
     }
 
-    public List<List<Student>> getTest(){
-        List<Student> students=new ArrayList<>();
+    public Map<Integer, Team> groupTeam(){
         List<Student> stu=studentRepository.getStudentList();
-        List<List<Student>> teamList=new ArrayList<>();
         Collections.shuffle(stu);
-        for(int i=0;i<stu.size();i++){
-            for(int k=0;i<stu.size()&&k<6;k++,i++){
-                teamList.get(k).add(stu.get(i));
+        for(int key = 1 ;key<=6;key++){
+            teamList.get(key).setStudents(new ArrayList<Student>());
+        }
+        for(int i=0;i<stu.size();){
+            for(int k=1;i<stu.size()&&k<=6;k++,i++){
+                teamList.get(k).getStudents().add(stu.get(i));
             }
-            System.out.println(i);
+            System.out.println(teamList);
         }
         return teamList;
     }
